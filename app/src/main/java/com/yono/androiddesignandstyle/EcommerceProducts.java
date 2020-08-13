@@ -55,13 +55,15 @@ public class EcommerceProducts extends AppCompatActivity {
             recyclerView.setLayoutManager(new GridLayoutManager(EcommerceProducts.this, 2));
             recyclerView.setAdapter(productsAdapter);
             showLoading(false);
-//            productsAdapter.setOnItemClickCallback(this::showCategory);
+            productsAdapter.setOnItemClickCallback(this::showCategory);
         }
 
 
         private void showCategory(ProductsResponse productsResponse) {
             Intent intent = new Intent(EcommerceProducts.this, EcommerceDetail.class);
-//            intent.putExtra("detail_products", (Parcelable) productsResponse);
+            intent.putExtra("title_detail", productsResponse.getTitleProducts());
+            intent.putExtra("price_detail", productsResponse.getPriceProducts());
+            intent.putExtra("description_detail", productsResponse.getDescriptionProducts());
             startActivity(intent);
         }
     };
